@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PicoDoorSense</title>
+<script type="text/javascript"  src = "main.js"></script>
+</head>
+<body>
+
+
+<h1>WELCOME,</h1>
+<h2>The garage is {state}</h2>
+<p>Monday June 10th 2023</p>
+<p>12:00:00</p>
+<p id = 'state'>LED is {state}</p>
+<p id = 'temperature'> GARAGE TEMPERATURE: {temperature} </p>
+<p id = 'he_sensor_value'>'0'</p>
+
+
+<form action = "./lighton">
+    <input type = "submit" value = "light on">
+</form>
+
+<form action = "./lightoff">
+    <input type = "submit" value = "light off">
+</form>
+</body>
+</html>
