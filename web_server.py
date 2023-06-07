@@ -5,10 +5,9 @@ from picozero import pico_temp_sensor, pico_led
 import machine
 import json
 from machine import Pin
+import server
 
-#Led Connected to Pin 15 // HE Sensor Connected to Pin 28
-#led = Pin(15,Pin.OUT)
-he_sensor = Pin(28,Pin.IN)
+
 
 #Connect to the Wi-Fi
 def connect():
@@ -51,119 +50,14 @@ def open_socket(ip):
     print(connection)
     return connection
 
-#Generate the requested webpage
-def webpage(temperature, state ):
-    #open & read HTML file
-    index_html_file = open('index.html', 'r')
-    index_html = index_html_file.read()
-
-    #replace the placeholders with the values
-    html = index_html.format(temperature=temperature, state=state)
-    
-    #close the file
-    index_html_file.close()
-    return str(html)
-
-#Read the main.js file and return it as a string
-def read_main_js():
-    #open & read javascript file
-    main_js_file = open('main.js', 'r')
-    main_js = main_js_file.read()
-    
-    #close the file
-    main_js_file.close()
-    return str(main_js)
-
 #Serve the client requests
-#FUUTRE: Turn into a class
 def serve(connection):
-   
-   #initalize the states of the variables
-    state = "OFF"
-    pico_led.off()
-    temperature = 0
-
+    # make a new server RequestHandler instance
+    server_instance = server.RequestHandler(connection)
+    
     #start serving the client requests
     while True:
-        
-        #accept requests from users
-        client = connection.accept()[0]
-        request = client.recv(1024)
-        request = str(request)
-        
-        #print the request
-        print(request)
-        
-        #parse the request
-        try:
-            request = request.split()[1]
-        except IndexError:
-            pass
-        
-        #handle the request
-        #FUTURE: add a 404 page
-        #FUTURE: change into switch case
-        
-
-        if request == '/lighton?':
-            #change the state of the led
-            pico_led.on()
-            #update the state variable
-            state = 'ON'
-        
-        elif request == '/lightoff?':
-            #change the state of the led
-            pico_led.off()
-            #update the state variable
-            state = 'OFF'
-        
-        elif request == '/data':
-            #update the temperature variable
-            temperature = pico_temp_sensor.temp
-            
-            #create a dictionary to store the data
-            data = {
-                'he_sensor_value': he_sensor.value(),
-                'state': state,
-                'temperature': temperature
-            }
-            
-            #send the the HTTP header
-            client.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n")
-            
-            #send the data
-            client.send(json.dumps(data))
-            
-            #send the data
-            client.close()
-
-            continue #make sure to only send the json data
-        
-        elif request == '/main.js':
-            #read the javascript file
-            javascript =  read_main_js()
-
-            #send the the HTTP header
-            client.send("HTTP/1.1 200 OK\r\nContent-Type: text/javascript\r\n\r\n")
-            
-            #send the javascript
-            client.send(javascript)
-            
-            #send the data
-            client.close()
-            continue
-            
-        #generate webpage
-        html = webpage(temperature, state)
-        
-        #pretened that the http header is sent
-        client.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n")
-
-        #send webpage
-        client.send(html)
-
-        #close the connection
-        client.close()
+        server_instance.serve()
 
 try:
     #connect to the network
