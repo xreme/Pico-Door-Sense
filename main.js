@@ -8,7 +8,7 @@ function updateData(){{
             //parse the responseText
             var data = JSON.parse(this.responseText);
            
-            //update the DOM
+            //update DOM
             document.getElementById("state").innerHTML = 'LED is ' + data.state;
             document.getElementById("temperature").innerHTML = 'The temperature is ' + data.temperature;
             document.getElementById("he_sensor_value").innerHTML = data.he_sensor_value;
@@ -17,5 +17,5 @@ function updateData(){{
     xhttp.open("GET", "/data", true);
     xhttp.send();
     }}
-    setInterval(updateData, 1000); // Update data every 1 second
+    setInterval(updateData, 1000);
     

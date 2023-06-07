@@ -10,7 +10,6 @@ from machine import Pin
 #led = Pin(15,Pin.OUT)
 he_sensor = Pin(28,Pin.IN)
 
-
 #Connect to the Wi-Fi
 def connect():
     #open the file containing the ssid and password
