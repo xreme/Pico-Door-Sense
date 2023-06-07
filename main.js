@@ -18,4 +18,3 @@ function updateData(){{
     xhttp.send();
     }}
     setInterval(updateData, 1000);
-    
