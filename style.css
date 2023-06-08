@@ -1,0 +1,29 @@
+.main-content{
+    font-family: "Arial", sans-serif;
+    /*text-align: center;*/
+    width: 50%;
+    margin: 0 auto;
+    /*outline: 1px solid red;*/
+   /* margin-top: 50vh; */
+    transform: translateY(10%); 
+}
+.welcome {
+    font-size: 3em;
+    /*transform: translateY(50%)*/;
+    /*outline: 1px solid blue*/;
+}
+.garage-state {
+    font-size: 2.2em;
+    /*outline: 1px solid green*/;
+}
+.information {
+    /*transform: translateY(50%);*/
+    /*outline: 1px solid orange;*/
+    line-height: 0.9;
+    transform: translateY(-15%);
+    margin-left: 5%;
+}
+.inner-information {
+    transform: translateY(-15%);
+    margin-left: 1%;
+}

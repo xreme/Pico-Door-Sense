@@ -57,10 +57,13 @@ class RequestHandler:
             #send the main.js file to the client
             self.send_main_js(client)
         
+        elif request == '/style.css':
+            #send the style.css file to the client
+            self.send_style_css(client)
+        
         else:
             #send the main page to the client
             self.send_webpage(client)
-    
     
     def turn_led_on(self):
         pico_led.on()
@@ -91,7 +94,6 @@ class RequestHandler:
         client.send(data)
     
     def send_main_js(self,client):
-        
         javascript = self.read_main_js()
 
         #send the the HTTP header
@@ -105,12 +107,12 @@ class RequestHandler:
         self.update_data()
         webpage = self.webpage()
 
-        client.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n")
+        client.send("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\n\r\n")
         client.send(webpage)
 
     def update_data(self):
         #update the temperature variable
-        self.temperature = pico_temp_sensor.temp
+        self.temperature = "{:.1f}".format(pico_temp_sensor.temp,1)
         
         #update the state variable
         if pico_led.value == 1:
@@ -141,3 +143,17 @@ class RequestHandler:
         #close the file
         main_js_file.close()
         return str(main_js)
+    
+    def send_style_css(self,client):
+        #open & read CSS file
+        style_css_file = open('style.css', 'r')
+        style_css = style_css_file.read()
+        
+        #send the the HTTP header
+        client.send("HTTP/1.1 200 OK\r\nContent-Type: text/css\r\n\r\n")
+        
+        #send the style.css file
+        client.send(style_css)
+        
+        #close the file
+        style_css_file.close()

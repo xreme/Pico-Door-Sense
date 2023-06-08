@@ -3,18 +3,24 @@
 <head>
 <title>PicoDoorSense</title>
 <script type="text/javascript"  src = "main.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-<h1>WELCOME,</h1>
-<h2>The garage is {state}</h2>
-<p>Monday June 10th 2023</p>
-<p>12:00:00</p>
-<p id = 'state'>LED is {state}</p>
-<p id = 'temperature'> GARAGE TEMPERATURE: {temperature} </p>
-<p id = 'he_sensor_value'>'0'</p>
+<div class = "main-content ">
+    <h1 class="welcome">WELCOME,</h1>
+    <div class = "information">
+        <h2 class = "garage-state">THE GARAGE IS <span id = "state">{state}</span></h2>
+        <div class = "inner-information">
+            <p>Monday June 10th 2023</p>
+            <p>12:00:00</p>
+            <p ><span id = 'temperature'>{temperature}</span> &deg;C</p>
+        </div>
+    </div>
+</div>
 
-
+<p id = 'he_sensor_value'>0</p>
+<p>LED is<span id = 'state'> {state}</span></p>
 <form action = "./lighton">
     <input type = "submit" value = "light on">
 </form>
