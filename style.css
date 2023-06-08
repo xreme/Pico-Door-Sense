@@ -26,4 +26,5 @@
 .inner-information {
     transform: translateY(-15%);
     margin-left: 1%;
+    line-height: 0.5;
 }

@@ -12,9 +12,21 @@ function updateData(){{
             document.getElementById("state").textContent = data.state;
             document.getElementById("temperature").textContent = data.temperature;
             document.getElementById("he_sensor_value").textContent = data.he_sensor_value;
+            
+            //display date and time
+            displayDateTime();
         }}
     }}
     xhttp.open("GET", "/data", true);
     xhttp.send();
     }}
-    setInterval(updateData, 1000);
+
+function displayDateTime(){{
+    var currentdate = new Date();
+    var date = currentdate.toLocaleDateString();
+    var time = currentdate.toLocaleTimeString();
+    document.getElementById("current-date").textContent = date;
+    document.getElementById("current-time").textContent = time;
+}}
+
+setInterval(updateData, 1000);
