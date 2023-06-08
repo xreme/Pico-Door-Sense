@@ -9,7 +9,6 @@ function updateData(){{
             var data = JSON.parse(this.responseText);
            
             //update DOM
-            document.getElementById("state").textContent = data.state;
             document.getElementById("temperature").textContent = data.temperature;
             document.getElementById("he_sensor_value").textContent = data.he_sensor_value;
             

@@ -8,7 +8,6 @@ from machine import Pin
 import server
 
 
-
 #Connect to the Wi-Fi
 def connect():
     #open the file containing the ssid and password
@@ -32,10 +31,13 @@ def connect():
     #FUTUTRE: add a timeout
     count = 0
     while not wlan.isconnected():
+        turn_led_off()
         print('Waiting for Connection ' + str(count))
         count +=1
+        turn_led_on()
         sleep(1)
     
+    turn_led_off()
     #get the pico's local IP address
     ip = wlan.ifconfig()[0]
     print(f'Connected on {ip}')
@@ -52,19 +54,31 @@ def open_socket(ip):
 
 #Serve the client requests
 def serve(connection):
+    turn_led_on()
     # make a new server RequestHandler instance
     server_instance = server.RequestHandler(connection)
-    
+    turn_led_off()
+
     #start serving the client requests
     while True:
         server_instance.serve()
 
+def turn_led_on():
+    pico_led.on()
+    
+def turn_led_off():
+    pico_led.off()
+
 try:
+    turn_led_on()
+
     #connect to the network
     ip = connect()
 
+    turn_led_on()
     #open a socket
     connection = open_socket(ip)
+    turn_led_off()
 
     #start serving the client requests
     serve(connection)

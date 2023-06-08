@@ -10,7 +10,7 @@
 <div class = "main-content ">
     <h1 class="welcome">WELCOME,</h1>
     <div class = "information">
-        <h2 class = "garage-state">THE GARAGE IS <span id = "state">{state}</span></h2>
+        <h2 class = "garage-state">THE GARAGE IS <span id = "he_sensor_value">{he_sensor_value}</span></h2>
         <div class = "inner-information">
             <p> 
                 Last updated on
@@ -19,20 +19,11 @@
                 <span id = "current-time">TIME</span>
             </p>
             
-            <p ><span id = 'temperature'>EST. Garage temperature{temperature}</span> &deg;C</p>
+            <p >Garage Temperature: <span id = 'temperature'>{temperature}</span> &deg;C</p>
 
         </div>
     </div>
 </div>
 
-<p id = 'he_sensor_value'>0</p>
-<p>LED is<span id = 'state'> {state}</span></p>
-<form action = "./lighton">
-    <input type = "submit" value = "light on">
-</form>
-
-<form action = "./lightoff">
-    <input type = "submit" value = "light off">
-</form>
 </body>
 </html>
