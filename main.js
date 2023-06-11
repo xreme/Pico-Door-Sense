@@ -12,6 +12,12 @@ function updateData(){{
             document.getElementById("temperature").textContent = data.temperature;
             document.getElementById("he_sensor_value").textContent = data.he_sensor_value;
             
+            //update the image
+            //document.getElementById("image-frame").src = data.he_sensor_value == "OPEN" ? "images/door-open.png" : "images/door-closed.png";
+
+            //update the ascii art
+            document.body.style.background = data.he_sensor_value == "OPEN" ? "RED" : "GREEN";
+
             //display date and time
             displayDateTime();
         }}

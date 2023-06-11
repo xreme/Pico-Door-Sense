@@ -1,12 +1,9 @@
 import network
 import socket
 from time import sleep
-from picozero import pico_temp_sensor, pico_led
+from picozero import pico_led
 import machine
-import json
-from machine import Pin
 import server
-
 
 #Connect to the Wi-Fi
 def connect():
