@@ -1,4 +1,4 @@
-//send an AJAX request to the server every 1 second
+//send an AJAX request to the server
 function updateData(){{
     //create a new XMLHttpRequest object
     var xhttp = new XMLHttpRequest();
@@ -11,21 +11,20 @@ function updateData(){{
             //update DOM
             document.getElementById("temperature").textContent = data.temperature;
             document.getElementById("he_sensor_value").textContent = data.he_sensor_value;
-            
-            //update the image
-            //document.getElementById("image-frame").src = data.he_sensor_value == "OPEN" ? "images/door-open.png" : "images/door-closed.png";
 
             //update the ascii art
             document.body.style.background = data.he_sensor_value == "OPEN" ? "RED" : "GREEN";
 
-            //display date and time
+            //display timestamp which the information was last updated
             displayDateTime();
         }}
     }}
+    //open & send the request
     xhttp.open("GET", "/data", true);
     xhttp.send();
     }}
 
+//display the current date and time
 function displayDateTime(){{
     var currentdate = new Date();
     var date = currentdate.toLocaleDateString();
@@ -34,4 +33,5 @@ function displayDateTime(){{
     document.getElementById("current-time").textContent = time;
 }}
 
+//call the updateData function every second
 setInterval(updateData, 1000);

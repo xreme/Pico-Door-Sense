@@ -3,10 +3,8 @@ from picozero import pico_led
 import server
 import machine
 
-
-
 try:
-    #make a new local socket instance
+    #make a new local web socket instance
     local_socket = local_web_socket.LocalWebSocket()
 
     pico_led.on()
