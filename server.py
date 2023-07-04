@@ -126,6 +126,8 @@ class RequestHandler:
         index_html_file = open('index.html', 'r')
         index_html = index_html_file.read()
 
+        #FUTURE: Change the name of the door
+
         #replace the placeholders with the corresponding values
         html = index_html.format(temperature=self.temperature, he_sensor_value=self.he_sensor_value)
         
