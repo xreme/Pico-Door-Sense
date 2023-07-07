@@ -12,7 +12,7 @@
 
  <h3 align="center">Pico Door Sense</h3>
 
- <p align = "left"> Pico Door Sense leverages the power of a Raspberry Pi Pico and the LM393 3144 Hall effect sensor Module to host a web server on the local Wi-Fi network; it offers real-time updates about the status of the specific door.
+ <p align = "left"> Pico Door Sense leverages the power of a Raspberry Pi Pico and the LM393 3144 Hall effect sensor module to host a web server on the local Wi-Fi network; it offers real-time updates about the status of the specific door.
  </p>
 </div>  
 
@@ -26,7 +26,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#parts-list">Parts List</a></li>
-        <li><a href="#installation">Software Installation</a></li>
+        <li><a href="#software-installation">Software Installation</a></li>
         <li><a href="#wiring">Wiring</a></li>
       </ul>
     </li>
@@ -57,27 +57,47 @@ Very simple parts are used for this project, they can be found on many large ele
   </ul>
   <li>Other Items</li>
   <ul>
-    <li>Solder</li>
+    <li>Solder(optional)</li>
     <li>Wire (3 different colors reccomended)</li>
     <li>MicroUsb Cable</li>
   </ul>
   <li>Tools</li>
   <ul>
-      <li>Soldering Iron</li>
-      <li>Wire Cutter & Stripper</li>
+      <li>Soldering Iron(optional)</li>
+      <li>Wire Cutter & Stripper(optional)</li>
   </ul>
 </ol>
 
 ## Software Installation
 
 1. Install the Micropython firmware onto the Raspberry Pi Pico. (<a href="https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/3">Tutuorial</a>)
-2. Through Thonny, install the picozero library. (<a href="https://picozero.readthedocs.io/en/latest/gettingstarted.html">documentation</a>)
-3.  Download the repository and copy all the files from the "pico-door-sense" folder onto the root directory of the Raspberry Pi Pico.
-4.  Edit the "config.txt" file and replace "SSID" with your network's name, and "PASSWORD" with the network passowrd. Ensure that the network is on the first line and the password is on the second without any spaces. 
-5.  Run "main.py" on the pico through thonny. The green LED should flash as it attempts to connect to your local network. If it is successful the green LED will turn off.
-6.  If the conncection was successful the Pico will print out its IP address, take note of that as it is how you will connect to the it.
-7. Enter in the IP address of the Raspberry Pi Pico on a browser, if all is successful it will display a green webpage.
 
+2. Through Thonny, install the picozero library. (<a href="https://picozero.readthedocs.io/en/latest/gettingstarted.html">documentation</a>)
+
+3.  Download the repository and copy all the files from the "pico-door-sense" folder onto the root directory of the Raspberry Pi Pico.
+
+4.  Edit the "config.txt" file and replace "SSID" with your network's name, and "PASSWORD" with the network passowrd. Ensure that the network is on the first line and the password is on the second without any spaces. 
+
+5.  Run "main.py" on the pico through thonny. The green LED should flash as it attempts to connect to your local network. If it is successful the green LED will turn off.
+
+6.  If the conncection was successful the Pico will print out its IP address, take note of the address that as it is how devices will connect to it.
+
+7. Enter in the IP address of the Raspberry Pi Pico W on a browser, if all is successful it will display a green webpage and the software is installed.
+
+
+## Wiring
+
+!! Ensure that the raspberry pi pico is unplugged from any power before doing any wiring.
+
+|Raspberry Pi PICO W| Hall effect sensor|
+|-------------------|-------------------|
+|3.3 V              | VCC               |
+|GND                | GND               |
+|GPIO 28            | D0                |
+
+Depending on the chosen Hall effect sensor module there may be an led that turns when the module is powered. On the LM393 3144 Hall effect sensor one green LED will turn on once it receives power from the Pico and a second will turn on when it senses a magnetic field.
+
+## Usage
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
