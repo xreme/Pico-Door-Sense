@@ -1,8 +1,8 @@
   # Pico-Door-Sense
 
-<!-- LOGO GOES HERE -->
+<!-- LOGO GOES HERE
 <br />
-
+ -->
 <a name="readme-top"></a>
 <div align="center">
   <!--
@@ -10,7 +10,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a> -->
 
- <h3 align="center">Pico Door Sense</h3>
+ <!--<h3 align="center">Pico Door Sense</h3>-->
 
  <p align = "left"> Pico Door Sense leverages the power of a Raspberry Pi Pico and the LM393 3144 Hall effect sensor module to host a web server on the local Wi-Fi network; it offers real-time updates about the status of the specific door.
  </p>
@@ -28,9 +28,11 @@
         <li><a href="#parts-list">Parts List</a></li>
         <li><a href="#software-installation">Software Installation</a></li>
         <li><a href="#wiring">Wiring</a></li>
+        <li><a href = "#testing">Testing</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href = "#further-development">Further Development</a></li>
    </ol>
  </details>
 
@@ -90,14 +92,33 @@ Very simple parts are used for this project, they can be found on many large ele
 !! Ensure that the raspberry pi pico is unplugged from any power before doing any wiring.
 
 |Raspberry Pi PICO W| Hall effect sensor|
-|-------------------|-------------------|
+|:-----------------:|:-----------------:|
 |3.3 V              | VCC               |
 |GND                | GND               |
 |GPIO 28            | D0                |
 
 Depending on the chosen Hall effect sensor module there may be an led that turns when the module is powered. On the LM393 3144 Hall effect sensor one green LED will turn on once it receives power from the Pico and a second will turn on when it senses a magnetic field.
 
+## Testing
+
+Once wiring it complete and software has been installed the system can be tested. Conect to the the pico to a power source and it should automcatically attempt to connect the the network specified in the config file. 
+
+Upon succesful connetion the LED of the Raspberry Pi Pico W should turn off. Use a device connected to the same network and enter in the IP address of the Raspberry Pi Pico W. 
+
+Once connected users should see the current status of Hall effect sensor, and a timestamp for that status. Users can move a magnet back and forth from the Hall effect, users should see the webpage dynamically update, if so, the system is operational.
+
 ## Usage
 
+This system can be used in anywhere that household members see fit for monitoring. A magnet can be placed on the door of choice and the Hall effect sensor can be placed in a postion of choice where it detects the magnet while the door is closed with the pico nearby. The Raspberry Pi Pico W can then be powered, giving all users on the network access to the status of the door by connecting to the Pico W using its IP address.
+
+## Further Development
+
+By default clients will be served an Webpage containing the information. 
+
+The raw data in JSON form can be requested with the following query:
+```
+PICO.W.IP.ADDSRESS/data
+```
+This information can be used to implement the status of this door in other developements.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
