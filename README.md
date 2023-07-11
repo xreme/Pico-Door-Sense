@@ -1,5 +1,5 @@
   # Pico-Door-Sense
-
+  ![alt text](https://github.com/xreme/Pico-Door-Sense/blob/main/images/PDS2.jpg?raw=true)
 <!-- LOGO GOES HERE
 <br />
  -->
