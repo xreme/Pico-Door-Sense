@@ -17,10 +17,14 @@
     font-size: 3.5vh;
 }
 .information {
+    /*transform: translateY(50%);*/
+    /*outline: 1px solid orange;*/
     line-height: 0.9;
+    /*margin-left: 5%;*/
 }
 .inner-information {
     font-size: 2.5vw;
+    /*margin-left: 1%;*/
     line-height: 0.5;
     font-size: 3.5vh; 
 }
@@ -37,24 +41,33 @@
         text-align: center;
         width: 90%;
         margin: 0 auto;
+        /*outline: 1px solid red;*/
+       /* margin-top: 50vh; */
         transform: translateY(20%); 
     }
     .garage-state {
         font-size: 10vh;
         letter-spacing: -4px;
         transform: translateY(-50%);
+        /*outline: 1px solid blue;*/
     }
     
     .welcome-message {
         font-size: 3vh;
+        /*transform: translateY(-80%);*/
+        /*outline: 1px solid green;*/
     }
     .information {
+        /*transform: translateY(50%);*/
+        /*outline: 1px solid orange;*/
         line-height: 0.9;
         transform: translateY(-15%);
+        /*margin-left: 5%;*/
     }
     .inner-information {
         font-size: 3vh;
         transform: translateY(-7vh);
+        /*margin-left: 180px;*/
         line-height: 1.2;
     }
 }
@@ -63,16 +76,25 @@
     .main-content{
         width: 60%;
         transform: translateY(40%);
+        /*outline: 1px solid blue;*/
     }
     .garage-state {
+    /*font-size: 3em;*/
     font-size: 13vw;
+    /*transform: translateY(50%)*/;
+    /*outline: 1px solid blue*/;
     }
     .welcome-message {
         font-size: 3.7vw;
+        /*transform: translateY(-80%)*/
+        /*outline: 1px solid green*/;
     }
     .information {
+        /*transform: translateY(50%);*/
+        /*outline: 1px solid orange;*/
         line-height: 0.9;
         transform: translateY(-15%);
+        /*margin-left: 3%;*/
     }
     .inner-information {
         font-size: 2vw;

@@ -6,15 +6,13 @@ from machine import Pin
 he_sensor = Pin(28,Pin.IN)
 
 class RequestHandler:
-    #initialize the class
     def __init__(self,connection):
         self.connection = connection
         self.temperature = 0
         self.he_sensor_value = "N/R"
     
-    #serve the client requests
     def serve(self):
-        #accept & store requests from users
+        #accept requests from users
         client = self.connection.accept()[0]
         request = client.recv(1024)
         request = str(request)
@@ -28,14 +26,13 @@ class RequestHandler:
         except IndexError:
             pass
 
-        #handle the request
         self.handle_request(request,client)
         client.close()
     
-    #send correct information baed on request
     def handle_request(self,request,client):
+        #handle the request
         #FUTURE: add a 404 page
-
+        #FUTURE: change into switch case
         if request == '/data':
             #send the data to the client
             self.send_data(client)
@@ -64,9 +61,7 @@ class RequestHandler:
             #send the main page to the client
             self.send_webpage(client)
     
-    #send a data file containing the temparature & the hall effect sensor to the client
     def send_data(self,client):
-
         #update the temperature variable
         self.update_data()
         
@@ -85,8 +80,8 @@ class RequestHandler:
         #send the data to the client
         client.send(data)
     
-    #send javascript file to the client
     def send_main_js(self,client):
+        #javascript = self.read_main_js()
 
         #send the the HTTP header
         client.send("HTTP/1.1 200 OK\r\nContent-Type: text/javascript\r\n\r\n")
@@ -94,22 +89,15 @@ class RequestHandler:
         #send the main page
         client.send(self.read_main_js())
 
-    #send the main page to the client
     def send_webpage(self,client):
-
         #update the temperature variable
         self.update_data()
         webpage = self.webpage()
 
-        #send the the HTTP header
         client.send("HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\n\r\n")
-
-        #send the main page
         client.send(webpage)
 
-    #update the temperature and hall-effect variables
     def update_data(self):
-
         #update the temperature variable
         self.temperature = "{:.1f}".format(pico_temp_sensor.temp,1)
 
@@ -119,32 +107,39 @@ class RequestHandler:
         else:
             self.he_sensor_value = "CLOSED"
 
-    #generate the webpage
     def webpage(self):
-        
         #open & read HTML file
         index_html_file = open('index.html', 'r')
         index_html = index_html_file.read()
 
-        #FUTURE: Change the name of the door
-
-        #replace the placeholders with the corresponding values
+        #replace the placeholders with the values
         html = index_html.format(temperature=self.temperature, he_sensor_value=self.he_sensor_value)
         
-        #close & return the file
+        #close the file
         index_html_file.close()
         return str(html)
     
-    #open & read javascript file
     def read_main_js(self):
-        
+        #open & read javascript file
         main_js_file = open('main.js', 'r')
         main_js = main_js_file.read()
         main_js_file.close()
 
+         #load ascii art
+        #closed_door_file = open('ascii-art/closed-door.txt', 'r')
+        #closed_door = closed_door_file.read()
+        #closed_door_file.close()
+
+        #open_door_file = open('ascii-art/open-door.txt', 'r')
+        #open_door = open_door_file.read()
+        #open_door_file.close()
+
+        #replace the placeholders with the values
+        #main_js = main_js.format(ascii_closed_door=closed_door, ascii_open_door=open_door)       
+        #return str(main_js.format(ascii_closed_door=closed_door, ascii_open_door=open_door))
+
         return str(main_js)
     
-    #send the style.css file to the client
     def send_style_css(self,client):
         #open & read CSS file
         style_css_file = open('style.css', 'r')
@@ -158,8 +153,6 @@ class RequestHandler:
         
         #close the file
         style_css_file.close()
-
-    #send any file to the client
     def send_file(self,client, file_name):
         
         #open & read the file

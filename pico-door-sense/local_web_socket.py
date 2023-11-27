@@ -32,6 +32,9 @@ class LocalWebSocket:
         wlan.active(True)
         wlan.connect(ssid, password)
         
+        # change the powerstate to disable deep sleep
+        wlan.config(pm = 0xa11140)
+        
         #continue to send requests to connect to the network
         #until the connection is successful
         #FUTUTRE: add a timeout
