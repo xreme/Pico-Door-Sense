@@ -20,5 +20,5 @@ try:
     while True:
         server_instance.serve()
 
-except KeyboardInterrupt:
+except:
     machine.reset()
